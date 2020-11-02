@@ -2264,6 +2264,7 @@ case "$target" in
             echo 1401600 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/hispeed_freq
             #default value for hispeed_load is 90, for sdm632 it should be 85
             echo 85 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/hispeed_load
+
             # sched_load_boost as -6 is equivalent to target load as 85.
             echo -6 >  /sys/devices/system/cpu/cpu4/sched_load_boost
             echo -6 > /sys/devices/system/cpu/cpu5/sched_load_boost
@@ -4894,6 +4895,12 @@ case "$target" in
             echo 250 > $llccbw/bw_hwmon/up_scale
             echo 1600 > $llccbw/bw_hwmon/idle_mbps
         done
+            
+            # Disable cdsprpcd daemon
+            setprop vendor.fastrpc.disable.cdsprpcd.daemon 1
+            
+            # Set Memory parameters
+            configure_memory_parameters
 
 	#Enable mem_latency governor for DDR scaling
         for memlat in /sys/class/devfreq/*qcom,memlat-cpu*
