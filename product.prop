@@ -9,7 +9,9 @@ ro.config.low_ram=false
 ro.lmk.log_stats=true
 
 # Graphics
-debug.hwui.renderer=skiavk
+debug.hwui.renderer=skiagl 
+renderthread.skia.reduceopstasksplitting=true
+debug.renderengine.backend=skiaglthreaded
 
 # Aux Expose
 persist.vendor.camera.privapp.list=org.codeaurora.snapcam,com.android.camera,com.google.camera
